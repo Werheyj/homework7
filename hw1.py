@@ -10,18 +10,17 @@ class Product:
 
 
 class Shop:
-    __file_name = 'products.txt'
+    def __init__(self):
+        self.__file_name = 'products.txt'
 
     def get_products(self):
         file = open(self.__file_name, 'r')
-        content = file.readlines()
-        for line in content:
-            line.strip()
+        content = file.read()
         file.close()
         return content
 
     def add(self, *products):
-        existing_products = self.get_products()
+        existing_products = self.get_products().strip().split('\n')
         existing_names = []
         for product in existing_products:
             parts = product.split(',')
